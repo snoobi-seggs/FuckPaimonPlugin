@@ -1,36 +1,31 @@
-# Give Artifact Plugin
-idk why this wasnt done ages ago and ever since exzork arti website died i have been sad.
-its simple as frick to understand, almost impossible to screw up.
+# RevealSurroundings Plugin
+
+omg entities exposed (#public-shaming #public-exhibition #almost-caught)<br>
+Reveals entity data around you (omg hot girls 5km around you)
 
 ## Basics of this plugin
 
 ### Calling
 
- -> `/ga` or `/giveartifact` or `/gart' to call this command
+ -> `/reveal` or `/r` or `/show` to call this command
 
 ### Usage
 
- -> `/ga [artifactId] [mainstatName] [substatName]=[substatValue] [level]` 
+ -> `/r [entity type] [radius]` 
 
-	-> creates an artifact from the given details 
+	-> sends entity data in in-game chat (bunch of getters)
 	
-	-> (% are 1 - 100) so cdmg=7.8 is 7.8% of crit damage
+	-> if u use /r all u might get spammed
 
-	-> eg `/ga 21543 hp% cr=23.4 cdmg=46.7 def=55 cdr=100 21`
-		-> `21543` => `Gilded Dreams Flower`  [required]
-		-> `hp%`   => `mainstat name`	      [not required]
-		-> `cr`    => `substat1 name`         [not required]
-		-> `23.4`  => `substat1 value`        [not required]
-		
-		-> `etc...`
+	-> eg `/r v 10`
+		-> `v` => `reveals EntityVehicle type entities`  [required]
+		-> `10`   => `radius of entity detection around you`	      [not required, default 500 (alm everything)]
 
-		-> `21`    => `artifact level (1-21)` [not required, defaut is max]
-
- -> `godset function not available yet`
+ -> `use at your own risk, may crash game if too many entities near you.`
 
 ### Download
 
- -> Proceed to `Releases` and download `GiveArtifactPlugMyAss.jar`
+ -> Proceed to `Releases` and download `RevealSurroundingsPllugin.jar`
  
  -> Place this jar file in ur plugins folder for gc
 
