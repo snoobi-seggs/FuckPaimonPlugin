@@ -18,13 +18,18 @@ import emu.grasscutter.utils.Position;
 
 import java.util.*;
 
-@Command(label = "reveal", usage = "/r [itemTYPE]", aliases = {"r","show"}, permission = "player.give", permissionTargeted = "player.give.others", targetRequirement = Command.TargetRequirement.NONE)
+@Command(label = "reveal", usage = "/r [itemTYPE] [radius of detection]\n\nITEM TYPES:\n[all/gadget/avatar/clientgadget/item/monster/npc/region/vehicle]\n[all/g/a/cg/i/m/npc/r/v]\n\nRadius Default = 500", aliases = {"r","show"}, permission = "player.give", permissionTargeted = "player.give.others", targetRequirement = Command.TargetRequirement.NONE)
 public final class RevealSurroundings implements CommandHandler {
 	@Override
 	public void execute(Player sender, Player targetPlayer, List<String> args) {
 		// Sanity check
 		if (targetPlayer == null) {
 			targetPlayer = sender;
+		}
+		//check if is still console
+		if (targetPlayer == null) {
+			CommandHandler.sendMessage(sender, "u cant run this shit on console unless u alr tagged someone wtf");
+			return;
 		}
 
 		Scene scene = targetPlayer.getScene();
@@ -67,7 +72,10 @@ public final class RevealSurroundings implements CommandHandler {
 		List<EntityRegion> regionEntities = new ArrayList<EntityRegion>();
 		List<EntityVehicle> vehicleEntities = new ArrayList<EntityVehicle>();
 		
-		if (type.equals("gadget") || type.equals("g") || type.equals("gt")) {
+		if (type.equals("")) {
+			CommandHandler.sendMessage(sender, "/r [itemTYPE] [radius of detection]\n\nITEM TYPES:\n[all/gadget/avatar/clientgadget/item/monster/npc/region/vehicle]\n[all/g/a/cg/i/m/npc/r/v]\n\nRadius Default = 500");
+			return;
+	    } else if (type.equals("gadget") || type.equals("g") || type.equals("gt")) {
 			allEntities = sceneF.getEntities().values().stream().filter(entity -> entity instanceof EntityGadget).toList();
 			for (GameEntity entity : allEntities) {
 				if (Math.abs(((EntityGadget) entity).getPosition().getX() - refPos.getX()) < radius && Math.abs(((EntityGadget) entity).getPosition().getY() - refPos.getY()) < radius && Math.abs(((EntityGadget) entity).getPosition().getZ() - refPos.getZ()) < radius) {
@@ -125,13 +133,69 @@ public final class RevealSurroundings implements CommandHandler {
 			}
 		} else if (type.equals("all")) {
 			allEntities = sceneF.getEntities().values().stream()
-					.filter(entity -> entity instanceof GameEntity)
+					.filter(entity -> entity instanceof EntityGadget)
 					.toList();
-			/*for (GameEntity entity : allEntities) {
+			for (GameEntity entity : allEntities) {
+				if (Math.abs(((EntityGadget) entity).getPosition().getX() - refPos.getX()) < radius && Math.abs(((EntityGadget) entity).getPosition().getY() - refPos.getY()) < radius && Math.abs(((EntityGadget) entity).getPosition().getZ() - refPos.getZ()) < radius) {
+					gadgetEntities.add((EntityGadget) entity);
+				}
+			}
+			allEntities = sceneF.getEntities().values().stream()
+					.filter(entity -> entity instanceof EntityAvatar)
+					.toList();
+			for (GameEntity entity : allEntities) {
+				if (Math.abs(((EntityAvatar) entity).getPosition().getX() - refPos.getX()) < radius && Math.abs(((EntityAvatar) entity).getPosition().getY() - refPos.getY()) < radius && Math.abs(((EntityAvatar) entity).getPosition().getZ() - refPos.getZ()) < radius) {
+					avatarEntities.add((EntityAvatar) entity);
+				}
+			}
+			allEntities = sceneF.getEntities().values().stream()
+					.filter(entity -> entity instanceof EntityClientGadget)
+					.toList();
+			for (GameEntity entity : allEntities) {
+				if (Math.abs(((EntityClientGadget) entity).getPosition().getX() - refPos.getX()) < radius && Math.abs(((EntityClientGadget) entity).getPosition().getY() - refPos.getY()) < radius && Math.abs(((EntityClientGadget) entity).getPosition().getZ() - refPos.getZ()) < radius) {
+					clientGadgetEntities.add((EntityClientGadget) entity);
+				}
+			}
+			allEntities = sceneF.getEntities().values().stream()
+					.filter(entity -> entity instanceof EntityItem)
+					.toList();
+			for (GameEntity entity : allEntities) {
+				if (Math.abs(((EntityItem) entity).getPosition().getX() - refPos.getX()) < radius && Math.abs(((EntityItem) entity).getPosition().getY() - refPos.getY()) < radius && Math.abs(((EntityItem) entity).getPosition().getZ() - refPos.getZ()) < radius) {
+					itemEntities.add((EntityItem) entity);
+				}
+			}
+			allEntities = sceneF.getEntities().values().stream()
+					.filter(entity -> entity instanceof EntityMonster)
+					.toList();
+			for (GameEntity entity : allEntities) {
+				if (Math.abs(((EntityMonster) entity).getPosition().getX() - refPos.getX()) < radius && Math.abs(((EntityMonster) entity).getPosition().getY() - refPos.getY()) < radius && Math.abs(((EntityMonster) entity).getPosition().getZ() - refPos.getZ()) < radius) {
+					monsterEntities.add((EntityMonster) entity);
+				}
+			}
+			allEntities = sceneF.getEntities().values().stream()
+					.filter(entity -> entity instanceof EntityNPC)
+					.toList();
+			for (GameEntity entity : allEntities) {
+				if (Math.abs(((EntityNPC) entity).getPosition().getX() - refPos.getX()) < radius && Math.abs(((EntityNPC) entity).getPosition().getY() - refPos.getY()) < radius && Math.abs(((EntityNPC) entity).getPosition().getZ() - refPos.getZ()) < radius) {
+					NPCEntities.add((EntityNPC) entity);
+				}
+			}
+			allEntities = sceneF.getEntities().values().stream()
+					.filter(entity -> entity instanceof EntityRegion)
+					.toList();
+			for (GameEntity entity : allEntities) {
+				if (Math.abs(((EntityRegion) entity).getPosition().getX() - refPos.getX()) < radius && Math.abs(((EntityRegion) entity).getPosition().getY() - refPos.getY()) < radius && Math.abs(((EntityRegion) entity).getPosition().getZ() - refPos.getZ()) < radius) {
+					regionEntities.add((EntityRegion) entity);
+				}
+			}
+			allEntities = sceneF.getEntities().values().stream()
+					.filter(entity -> entity instanceof EntityVehicle)
+					.toList();
+			for (GameEntity entity : allEntities) {
 				if (Math.abs(((EntityVehicle) entity).getPosition().getX() - refPos.getX()) < radius && Math.abs(((EntityVehicle) entity).getPosition().getY() - refPos.getY()) < radius && Math.abs(((EntityVehicle) entity).getPosition().getZ() - refPos.getZ()) < radius) {
 					vehicleEntities.add((EntityVehicle) entity);
 				}
-			}*/
+			}
 		} else {
 			CommandHandler.sendMessage(sender,"this parem does not exist");
 			return;
@@ -253,7 +317,17 @@ public final class RevealSurroundings implements CommandHandler {
 				response = "";
 			}
 		}
-		CommandHandler.sendMessage(sender, "this all func later then i implement lol");
+		if (allEntities.size() != 0 && type.equals("all")) {
+			for (GameEntity entity : allEntities) {
+				response = "GameEntityId = " + entity.getId()
+						  + "\n\nBlock Id = " + entity.getBlockId()
+						  + "\nConfig Id = " + entity.getConfigId()
+						  + "\nEntityType = " + entity.getEntityType()
+						  + "\nLife State" + entity.getLifeState();
+				CommandHandler.sendMessage(sender, response);
+			}
+		}
+		CommandHandler.sendMessage(sender, "e n d s e g g s");
 	}
 }
 
