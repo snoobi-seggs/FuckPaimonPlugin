@@ -1,13 +1,13 @@
 package snoobi.bignose;
 
 import emu.grasscutter.plugin.Plugin;
-import snoobi.bignose.commands.RevealSurroundings;
+import snoobi.bignose.commands.FuckPaimonCommand;
 
-public final class RevealSurroundingsSnoo extends Plugin {
+public final class FuckPaimon extends Plugin {
     /* Turn the plugin into a singleton. */
-    private static RevealSurroundingsSnoo instance;
+    private static FuckPaimon instance;
 
-    public static RevealSurroundingsSnoo getInstance() {
+    public static FuckPaimon getInstance() {
         return instance;
     }
     
@@ -18,15 +18,15 @@ public final class RevealSurroundingsSnoo extends Plugin {
 
     @Override public void onEnable() {
         // Register commands.
-        this.getHandle().registerCommand(new RevealSurroundings());
+        this.getHandle().registerCommand(new FuckPaimonCommand());
 
         // Log a plugin status message.
-        this.getLogger().info("The Reveal Surroundings plugin has been enabled.");
+        this.getLogger().info("The testSpawn has been loaded");
     }
 
     @Override public void onDisable() {
         // Log a plugin status message.
-        this.getLogger().info("The Reveal Surroundings plugin died lol");
+        this.getLogger().info("The TestSpawn plugin died lol");
     }
 
   
