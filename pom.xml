@@ -11,24 +11,14 @@
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <repositories>
-        <!-- 
-        While Grasscutter is on Maven Central, we include Sonatype to update quickly.
-        Usually, builds take an hour to go from Sonatype to Maven Central.
-         -->
-        <repository>
-            <id>sonatype</id>
-            <url>https://s01.oss.sonatype.org/content/groups/public/</url>
-        </repository>
-    </repositories>
-    
     <dependencies>
         <dependency>
-            <groupId>xyz.grasscutters</groupId> <!-- Versions below 1.0.3-dev are on 'tech.xigam' -->
+            <groupId>io.grasscutter</groupId> <!-- Versions below 1.0.3-dev are on 'tech.xigam' -->
             <artifactId>grasscutter</artifactId>
-            <version>1.2.3</version> <!-- Replace with the latest version of the API. -->
+            <version>1.7.3</version> <!-- Replace with the latest version of the API. -->
         </dependency>
     </dependencies>
 </project>
