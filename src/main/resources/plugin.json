@@ -3,10 +3,11 @@
   "description": "A simple command that simply deletes paimon's nipples",
   "version": "1.2.3",
   "authors": [ "snoobiXorange" ],
-  
+
   "mainClass": "snoobi.bignose.FuckPaimon",
-  
+
   "comments": [
     "ew kira is cringe"
-  ]
+  ],
+  "api": 2
 }

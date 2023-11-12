@@ -21,13 +21,13 @@ public final class FuckPaimon extends Plugin {
         this.getHandle().registerCommand(new FuckPaimonCommand());
 
         // Log a plugin status message.
-        this.getLogger().info("The testSpawn has been loaded");
+        this.getLogger().info("The FuckPaimon has been enabled");
     }
 
     @Override public void onDisable() {
         // Log a plugin status message.
-        this.getLogger().info("The TestSpawn plugin died lol");
+        this.getLogger().info("The FuckPaimon plugin died lol");
     }
 
-  
+
 }
